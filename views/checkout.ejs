@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page === "cart" ? "Your Cart" : page === "payment" ? "Mock Checkout" : "Order Confirmed" %> | Euphoria Book Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F3EBDD;
+            color: #2C2725;
+        }
+
+        h1, h2, h3, .literary {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .gold-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #B08D57, transparent);
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: #294536;
+            color: #F1EACC;
+            padding: 12px 22px;
+            border-radius: 3px;
+            transition: 0.25s ease;
+        }
+
+        .primary-btn:hover {
+            background: #1E3327;
+        }
+
+        .secondary-btn {
+            display: inline-block;
+            border: 1px solid #8C6046;
+            color: #6B2737;
+            padding: 10px 18px;
+            border-radius: 3px;
+            transition: 0.25s ease;
+        }
+
+        .secondary-btn:hover {
+            background: #E8DDC8;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <%- include("includes/nav.ejs") %>
+
+    <main class="max-w-6xl mx-auto px-5 py-12 md:py-16">
+        <% if (page === "cart") { %>
+            <div class="text-center mb-12">
+                <p class="uppercase tracking-[0.3em] text-xs text-[#8C6046] mb-3">Your Reading Journey</p>
+                <h1 class="text-5xl md:text-6xl font-semibold text-[#3A2922]">Your Book Basket</h1>
+                <div class="gold-line max-w-40 mx-auto my-5"></div>
+                <p class="text-sm text-[#75675C]">The stories you've chosen to take home.</p>
+            </div>
+
+            <% if (items.length === 0) { %>
+                <div class="bg-[#E8DDC8] border border-[#D5C2A4] p-10 md:p-16 text-center rounded-sm">
+                    <h2 class="text-3xl text-[#3A2922] mb-3">Your basket is waiting for a story.</h2>
+                    <p class="text-sm text-[#75675C] mb-7">You haven't added any books yet.</p>
+                    <a href="/books" class="primary-btn">Explore the Collection</a>
+                </div>
+            <% } else { %>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <section class="lg:col-span-2 space-y-5">
+                        <% items.forEach(item => { %>
+                            <article class="bg-[#E8DDC8] border border-[#D5C2A4] p-5 flex flex-col sm:flex-row gap-5">
+                                <div class="w-full sm:w-32 h-40 shrink-0 bg-[#F3EBDD] flex items-center justify-center">
+                                    <% if (item.book.image) { %>
+                                        <img src="<%= item.book.image %>" alt="<%= item.book.title %>" class="w-full h-full object-contain">
+                                    <% } else { %>
+                                        <span class="text-4xl">📖</span>
+                                    <% } %>
+                                </div>
+
+                                <div class="flex-1">
+                                    <p class="text-xs uppercase tracking-widest text-[#8C6046] mb-2"><%= item.book.category || "From our collection" %></p>
+                                    <h2 class="text-3xl font-semibold text-[#3A2922] leading-tight"><%= item.book.title %></h2>
+                                    <p class="text-sm text-[#75675C] mt-1">By <%= item.book.author || "Unknown author" %></p>
+                                    <p class="text-lg font-semibold text-[#6B2737] mt-3">₹<%= item.subtotal.toFixed(2) %></p>
+
+                                    <div class="flex flex-wrap items-center gap-4 mt-4">
+                                        <form action="/cart/update/<%= item.book._id %>" method="POST" class="flex items-center gap-2">
+                                            <label for="quantity-<%= item.book._id %>" class="text-xs text-[#75675C]">Qty</label>
+                                            <input id="quantity-<%= item.book._id %>" type="number" name="quantity" min="1" max="99" value="<%= item.quantity %>" required class="w-16 p-2 bg-[#F3EBDD] border border-[#D5C2A4]">
+                                            <button type="submit" class="text-sm underline text-[#294536]">Update</button>
+                                        </form>
+
+                                        <form action="/cart/remove/<%= item.book._id %>" method="POST">
+                                            <button type="submit" class="text-sm text-[#6B2737] underline">Remove</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </article>
+                        <% }); %>
+                    </section>
+
+                    <aside class="bg-[#2C2725] text-[#F1EACC] p-7 h-fit">
+                        <p class="uppercase tracking-[0.25em] text-xs text-[#C9A66B]">Order Summary</p>
+                        <h2 class="text-4xl mt-3 mb-6">A little something for your shelf</h2>
+                        <div class="gold-line mb-5"></div>
+
+                        <div class="flex justify-between gap-4 text-sm mb-4">
+                            <span>Books</span>
+                            <span><%= items.reduce((sum, item) => sum + item.quantity, 0) %></span>
+                        </div>
+
+                        <div class="flex justify-between gap-4 text-sm mb-5">
+                            <span>Delivery</span>
+                            <span>Demo only</span>
+                        </div>
+
+                        <div class="gold-line mb-5"></div>
+
+                        <div class="flex justify-between items-center gap-4 mb-7">
+                            <span class="text-lg">Total</span>
+                            <span class="text-2xl font-semibold">₹<%= total.toFixed(2) %></span>
+                        </div>
+
+                        <form action="/checkout" method="POST">
+                            <button type="submit" class="primary-btn w-full text-center">Proceed to Checkout</button>
+                        </form>
+
+                        <p class="text-xs text-[#D4C7B2] text-center mt-4 leading-5">This is a demo bookstore. No real payment will be taken.</p>
+                    </aside>
+                </div>
+            <% } %>
+
+        <% } else if (page === "payment") { %>
+            <div class="text-center mb-10">
+                <p class="text-xs uppercase tracking-[0.3em] text-[#8C6046] mb-3">Almost Yours</p>
+                <h1 class="text-5xl md:text-6xl text-[#3A2922] font-semibold">Complete Your Order</h1>
+                <div class="gold-line max-w-40 mx-auto my-5"></div>
+                <p class="text-sm text-[#75675C]">A demonstration checkout for your academic project.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
+                <section class="md:col-span-3 bg-[#E8DDC8] border border-[#D5C2A4] p-6 md:p-8">
+                    <h2 class="text-3xl text-[#3A2922] mb-2">Your Selected Books</h2>
+                    <div class="gold-line my-5"></div>
+
+                    <% items.forEach(item => { %>
+                        <div class="flex justify-between items-start gap-4 py-4 border-b border-[#D5C2A4]">
+                            <div>
+                                <h3 class="text-2xl text-[#3A2922]"><%= item.book.title %></h3>
+                                <p class="text-sm text-[#75675C]">Quantity: <%= item.quantity %></p>
+                            </div>
+                            <p class="font-semibold whitespace-nowrap">₹<%= item.subtotal.toFixed(2) %></p>
+                        </div>
+                    <% }); %>
+
+                    <div class="flex justify-between items-center mt-6 gap-4">
+                        <span class="text-lg">Total payable (demo)</span>
+                        <span class="text-2xl font-semibold text-[#6B2737]">₹<%= total.toFixed(2) %></span>
+                    </div>
+                </section>
+
+                <aside class="md:col-span-2 bg-[#2C2725] text-[#F1EACC] p-7 h-fit">
+                    <p class="text-xs uppercase tracking-[0.25em] text-[#C9A66B]">Demo Payment</p>
+                    <h2 class="text-4xl mt-3 mb-5">One final page</h2>
+                    <div class="gold-line mb-5"></div>
+
+                    <p class="text-sm leading-6 text-[#E5D9C7] mb-5">
+                        In a real store, this step would connect to a secure payment provider. For this project, clicking the button below simply simulates a successful order.
+                    </p>
+
+                    <div class="border border-[#8C6046] p-4 mb-6">
+                        <p class="text-sm font-semibold mb-2">Payment method</p>
+                        <p class="text-sm text-[#E5D9C7]">Mock payment — no card details required</p>
+                    </div>
+
+                    <form action="/checkout/payment" method="POST">
+                        <button type="submit" class="primary-btn w-full text-center">Confirm Demo Order</button>
+                    </form>
+
+                    <a href="/cart" class="block text-center text-sm underline text-[#E5D9C7] mt-5">Return to Cart</a>
+                    <p class="text-xs text-[#D4C7B2] leading-5 mt-5">No money is charged. This is not a real payment transaction.</p>
+                </aside>
+            </div>
+
+        <% } else if (page === "success") { %>
+            <section class="max-w-2xl mx-auto text-center bg-[#E8DDC8] border border-[#D5C2A4] px-6 py-12 md:px-12 md:py-16">
+                <div class="w-20 h-20 mx-auto rounded-full bg-[#294536] text-[#F1EACC] flex items-center justify-center text-4xl mb-6">✓</div>
+                <p class="uppercase tracking-[0.3em] text-xs text-[#8C6046] mb-3">A New Chapter Begins</p>
+                <h1 class="text-5xl md:text-6xl text-[#3A2922] font-semibold">Order Confirmed!</h1>
+                <div class="gold-line max-w-40 mx-auto my-6"></div>
+
+                <p class="text-[#75675C] leading-7 mb-6">
+                    Thank you for choosing Euphoria Book Store. Your demo order has been placed successfully.
+                </p>
+
+                <div class="bg-[#F3EBDD] border border-[#D5C2A4] p-5 text-left mb-7">
+                    <div class="flex justify-between gap-4 mb-4">
+                        <span class="text-sm text-[#75675C]">Demo order number</span>
+                        <span class="font-semibold"><%= orderNumber %></span>
+                    </div>
+
+                    <div class="gold-line mb-4"></div>
+
+                    <% orderItems.forEach(item => { %>
+                        <div class="flex justify-between gap-4 mb-3">
+                            <div>
+                                <p class="font-semibold"><%= item.book.title %></p>
+                                <p class="text-xs text-[#75675C]">Quantity: <%= item.quantity %></p>
+                            </div>
+                            <p class="font-semibold whitespace-nowrap">₹<%= item.subtotal.toFixed(2) %></p>
+                        </div>
+                    <% }); %>
+
+                    <div class="gold-line my-4"></div>
+
+                    <div class="flex justify-between gap-4">
+                        <span class="font-semibold">Demo total</span>
+                        <span class="font-semibold text-[#6B2737]">₹<%= orderTotal.toFixed(2) %></span>
+                    </div>
+                </div>
+
+                <p class="text-xs text-[#75675C] mb-7">
+                    This is a simulated order. No real payment was processed and no physical delivery has been arranged.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-3">
+                    <a href="/books" class="primary-btn">Continue Exploring</a>
+                    <a href="/" class="secondary-btn">Return Home</a>
+                </div>
+            </section>
+        <% } %>
+    </main>
+
+    <%- include("includes/footer.ejs") %>
+</body>
+</html>

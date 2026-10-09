@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Euphoria</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+        .font-display {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .font-body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-[#F3EBDD] text-[#2C2725] font-body">
+    <%- include('includes/nav.ejs') %>
+
+    <main class="min-h-[82vh] flex items-center justify-center px-6 py-20 relative overflow-hidden">
+        <div class="absolute top-10 left-0 w-72 h-72 bg-[#789165]/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#96584E]/10 rounded-full blur-3xl"></div>
+
+        <div class="relative w-full max-w-md">
+            <div class="text-center mb-10">
+                <p class="text-[#96584E] uppercase tracking-[0.35em] text-xs font-semibold mb-5">
+                    The Private Collection
+                </p>
+
+                <div class="flex items-center justify-center gap-4 mb-6">
+                    <span class="h-px w-16 bg-[#8C6046]/50"></span>
+                    <span class="text-[#8C6046] text-xl">✦</span>
+                    <span class="h-px w-16 bg-[#8C6046]/50"></span>
+                </div>
+
+                <h1 class="font-display text-6xl md:text-7xl text-[#2C2725] leading-none">
+                    Welcome Back
+                </h1>
+
+                <p class="font-display italic text-xl text-[#294536] mt-5">
+                    Step quietly behind the shelves.
+                </p>
+            </div>
+
+            <div class="border border-[#8C6046]/40 p-2">
+                <div class="bg-[#2C2725] px-8 py-10 md:px-10 md:py-12">
+                    <div class="text-center mb-9">
+                        <h2 class="font-display text-3xl text-[#F1EACC]">
+                            Euphoria Administration
+                        </h2>
+                        <p class="text-[#F1EACC]/50 text-xs mt-2 tracking-wide">
+                            Manage the shelves with care.
+                        </p>
+                    </div>
+
+                    <form action="/admin/login" method="post" class="space-y-6">
+                        <div>
+                            <label for="username" class="block text-[#F1EACC]/70 text-xs uppercase tracking-[0.2em] mb-3">
+                                Username
+                            </label>
+                            <input type="text" id="username" name="username" required autocomplete="username" placeholder="Enter your username" class="w-full bg-transparent border-b border-[#F1EACC]/30 text-[#F1EACC] placeholder-[#F1EACC]/30 py-3 outline-none focus:border-[#B08D57] transition duration-300">
+                        </div>
+
+                        <div>
+                            <label for="password" class="block text-[#F1EACC]/70 text-xs uppercase tracking-[0.2em] mb-3">
+                                Password
+                            </label>
+                            <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter your password" class="w-full bg-transparent border-b border-[#F1EACC]/30 text-[#F1EACC] placeholder-[#F1EACC]/30 py-3 outline-none focus:border-[#B08D57] transition duration-300">
+                        </div>
+
+                        <button type="submit" class="w-full bg-[#6B2737] text-[#F3EBDD] py-4 mt-3 text-xs uppercase tracking-[0.25em] hover:bg-[#96584E] transition duration-300">
+                            Enter the Library
+                        </button>
+                    </form>
+
+                    <div class="flex items-center justify-center gap-3 mt-9">
+                        <span class="w-12 h-px bg-[#8C6046]/50"></span>
+                        <span class="text-[#8C6046] text-sm">✦</span>
+                        <span class="w-12 h-px bg-[#8C6046]/50"></span>
+                    </div>
+
+                    <p class="text-center text-[#F1EACC]/35 text-[10px] uppercase tracking-[0.2em] mt-5">
+                        Authorized access only
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="/books" class="text-[#6B2737] text-xs uppercase tracking-[0.2em] border-b border-[#6B2737]/50 pb-1 hover:text-[#96584E] hover:border-[#96584E] transition">
+                    ← Return to the Library
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <%- include('includes/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Euphoria | A World Between Pages</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+        .font-display { font-family: 'Cormorant Garamond', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        .about-image {
+            transition: transform 700ms ease;
+        }
+
+        .image-frame:hover .about-image {
+            transform: scale(1.04);
+        }
+        
+
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(30,26,24,.85), rgba(30,26,24,.45), rgba(30,26,24,.65));
+        }
+
+        ::selection {
+            background: #6B2737;
+            color: #F3EBDD;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F3EBDD] text-[#2C2725] font-body">
+    <%- include('includes/nav.ejs') %>
+
+    <!-- HERO BANNER -->
+    <section class="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
+        <img src="/uploads/h4.jpg" alt="An enchanting old library filled with books" class="absolute inset-0 h-full w-full object-cover object-center">
+
+        <div class="hero-overlay absolute inset-0"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+            <p class="text-[#E8C995] uppercase tracking-[0.4em] text-xs mb-6">A little world of our own</p>
+
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <span class="h-px w-16 bg-[#B08D57]"></span>
+                <span class="text-[#C9A66B] text-xl">✦</span>
+                <span class="h-px w-16 bg-[#B08D57]"></span>
+            </div>
+
+            <h1 class="font-display text-6xl md:text-8xl text-[#F3EBDD] leading-tight">
+                The Story of <span class="italic text-[#E8C995]">Euphoria</span>
+            </h1>
+
+            <p class="font-display italic text-xl md:text-2xl text-[#F3EBDD]/85 mt-6 max-w-2xl mx-auto leading-relaxed">
+                A quiet corner for curious minds, wandering souls and lovers of stories.
+            </p>
+
+            <a href="#our-story" class="inline-block mt-9 border border-[#C9A66B]/80 px-7 py-3 text-[#F3EBDD] text-xs uppercase tracking-[0.2em] hover:bg-[#B08D57] hover:text-[#1E1A18] transition duration-300">
+                Turn the Page ↓
+            </a>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#F3EBDD] to-transparent"></div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section id="our-story" class="px-6 py-20 md:py-28 overflow-hidden">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 md:gap-20 items-center">
+
+            <!-- IMAGE -->
+            <div class="relative max-w-lg mx-auto w-full">
+                <div class="absolute -top-4 -left-4 w-full h-full border border-[#B08D57]/70"></div>
+
+                <div class="image-frame relative overflow-hidden border border-[#8C6046]/30 bg-[#E8DDC8] p-2 shadow-2xl shadow-[#2C2725]/10">
+                    <img src="/uploads/c1.jfif" alt="A peaceful reading corner surrounded by books" loading="lazy" class="about-image w-full h-[420px] md:h-[540px] object-cover">
+
+                    <div class="absolute inset-2 bg-gradient-to-t from-[#1E1A18]/75 via-transparent to-transparent pointer-events-none"></div>
+
+                    <div class="absolute bottom-8 left-8 right-8">
+                        <p class="text-[#E8C995] uppercase tracking-[0.3em] text-[10px] mb-3">Our little philosophy</p>
+                        <p class="font-display italic text-3xl md:text-4xl text-[#F3EBDD]">Somewhere between the pages, we find ourselves.</p>
+                        <div class="mt-5 h-px w-16 bg-[#C9A66B]"></div>
+                    </div>
+                </div>
+
+                <div class="absolute -bottom-6 -right-3 md:-right-7 bg-[#294536] text-[#F3EBDD] px-6 py-5 shadow-lg">
+                    <p class="font-display italic text-2xl">Read. Dream. Repeat.</p>
+                    <p class="text-[#E8C995] text-[9px] uppercase tracking-[0.25em] mt-1">The Euphoria way</p>
+                </div>
+            </div>
+
+            <!-- STORY TEXT -->
+            <div class="pt-4 md:pt-0">
+                <p class="flex items-center gap-3 text-[#96584E] uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+                    Between the Covers
+                    <span class="h-px w-12 bg-[#8C6046]/60"></span>
+                </p>
+
+                <h2 class="font-display text-5xl md:text-6xl leading-[1.1] text-[#3A2922] mb-7">
+                    Every great story begins with a <span class="italic text-[#6B2737]">little wonder.</span>
+                </h2>
+
+                <div class="flex items-center gap-3 mb-7">
+                    <span class="h-px w-12 bg-[#B08D57]"></span>
+                    <span class="text-[#B08D57]">✦</span>
+                    <span class="h-px w-8 bg-[#B08D57]/40"></span>
+                </div>
+
+                <p class="text-[#3A2922]/80 leading-8 mb-5">
+                    Welcome to Euphoria, a little sanctuary created for those who find comfort between the pages of a good book. We believe that reading is more than a pastime; it is an invitation to explore, imagine and see the world differently.
+                </p>
+
+                <p class="text-[#3A2922]/75 leading-8 mb-5">
+                    From mysterious adventures and timeless romances to magical kingdoms, fascinating discoveries and remarkable lives, our collection brings together stories for every kind of reader.
+                </p>
+
+                <p class="text-[#3A2922]/75 leading-8 mb-8">
+                    Whether you arrive searching for knowledge or simply need a moment away from the noise of everyday life, we hope you find a book that feels as though it was waiting just for you.
+                </p>
+
+                <p class="font-display italic text-2xl text-[#6B2737]">Because every reader deserves a world of their own.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR BELIEF -->
+    <section class="relative bg-[#294536] px-6 py-20 md:py-24 overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full border border-[#C9A66B]/15"></div>
+        <div class="absolute -bottom-24 -left-16 w-80 h-80 rounded-full border border-[#C9A66B]/15"></div>
+
+        <div class="relative max-w-4xl mx-auto text-center">
+            <p class="text-[#C9A66B] uppercase tracking-[0.35em] text-xs mb-6">A Thought to Keep</p>
+
+            <div class="text-[#C9A66B] font-display text-5xl mb-3">“</div>
+
+            <h2 class="font-display italic text-3xl md:text-5xl leading-relaxed text-[#F3EBDD]">
+                A library is not merely a collection of books, but a collection of worlds waiting to be discovered.
+            </h2>
+
+            <div class="flex items-center justify-center gap-4 mt-8">
+                <span class="h-px w-16 bg-[#B08D57]/70"></span>
+                <span class="text-[#C9A66B]">✦</span>
+                <span class="h-px w-16 bg-[#B08D57]/70"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT YOU'LL FIND -->
+    <section class="px-6 py-20 md:py-28">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <p class="text-[#96584E] uppercase tracking-[0.3em] text-xs mb-4">A Shelf for Every Soul</p>
+
+                <h2 class="font-display text-5xl md:text-6xl text-[#3A2922]">Find what speaks to you.</h2>
+
+                <div class="flex items-center justify-center gap-3 mt-6">
+                    <span class="h-px w-16 bg-[#B08D57]"></span>
+                    <span class="text-[#B08D57]">✦</span>
+                    <span class="h-px w-16 bg-[#B08D57]"></span>
+                </div>
+
+                <p class="max-w-xl mx-auto text-sm leading-7 text-[#3A2922]/65 mt-6">
+                    Every shelf holds a different adventure. Where will your next one take you?
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <a href="/categories/Fiction" class="group border border-[#B08D57]/35 bg-[#E8DDC8]/60 p-8 hover:bg-[#6B2737] transition duration-500">
+                    <span class="font-display text-3xl text-[#B08D57] group-hover:text-[#E8C995]">I.</span>
+                    <h3 class="font-display text-3xl text-[#3A2922] group-hover:text-[#F3EBDD] mt-4 mb-3">Fiction & Romance</h3>
+                    <p class="text-sm leading-7 text-[#3A2922]/70 group-hover:text-[#F3EBDD]/75">For hearts that wander and imaginations that never sit still.</p>
+                    <span class="inline-block mt-6 text-[#6B2737] group-hover:text-[#E8C995] text-xs uppercase tracking-[0.2em]">Explore shelf →</span>
+                </a>
+
+                <a href="/categories/Fantasy" class="group border border-[#B08D57]/35 bg-[#E8DDC8]/60 p-8 hover:bg-[#294536] transition duration-500">
+                    <span class="font-display text-3xl text-[#B08D57] group-hover:text-[#E8C995]">II.</span>
+                    <h3 class="font-display text-3xl text-[#3A2922] group-hover:text-[#F3EBDD] mt-4 mb-3">Fantasy & Wonder</h3>
+                    <p class="text-sm leading-7 text-[#3A2922]/70 group-hover:text-[#F3EBDD]/75">Enchanting realms, impossible quests and a little everyday magic.</p>
+                    <span class="inline-block mt-6 text-[#6B2737] group-hover:text-[#E8C995] text-xs uppercase tracking-[0.2em]">Explore shelf →</span>
+                </a>
+
+                <a href="/categories/Academics" class="group border border-[#B08D57]/35 bg-[#E8DDC8]/60 p-8 hover:bg-[#6B2737] transition duration-500">
+                    <span class="font-display text-3xl text-[#B08D57] group-hover:text-[#E8C995]">III.</span>
+                    <h3 class="font-display text-3xl text-[#3A2922] group-hover:text-[#F3EBDD] mt-4 mb-3">Knowledge & Learning</h3>
+                    <p class="text-sm leading-7 text-[#3A2922]/70 group-hover:text-[#F3EBDD]/75">Ideas to discover, questions to ask and new things to understand.</p>
+                    <span class="inline-block mt-6 text-[#6B2737] group-hover:text-[#E8C995] text-xs uppercase tracking-[0.2em]">Explore shelf →</span>
+                </a>
+
+                <a href="/categories/Mystery" class="group border border-[#B08D57]/35 bg-[#E8DDC8]/60 p-8 hover:bg-[#294536] transition duration-500">
+                    <span class="font-display text-3xl text-[#B08D57] group-hover:text-[#E8C995]">IV.</span>
+                    <h3 class="font-display text-3xl text-[#3A2922] group-hover:text-[#F3EBDD] mt-4 mb-3">Mystery & Secrets</h3>
+                    <p class="text-sm leading-7 text-[#3A2922]/70 group-hover:text-[#F3EBDD]/75">Clues, hidden truths and twists that keep you turning pages.</p>
+                    <span class="inline-block mt-6 text-[#6B2737] group-hover:text-[#E8C995] text-xs uppercase tracking-[0.2em]">Explore shelf →</span>
+                </a>
+
+                <a href="/categories/Science" class="group border border-[#B08D57]/35 bg-[#E8DDC8]/60 p-8 hover:bg-[#6B2737] transition duration-500">
+                    <span class="font-display text-3xl text-[#B08D57] group-hover:text-[#E8C995]">V.</span>
+                    <h3 class="font-display text-3xl text-[#3A2922] group-hover:text-[#F3EBDD] mt-4 mb-3">Science & Discovery</h3>
+                    <p class="text-sm leading-7 text-[#3A2922]/70 group-hover:text-[#F3EBDD]/75">Explore the wonders of our world, from tiny details to big ideas.</p>
+                    <span class="inline-block mt-6 text-[#6B2737] group-hover:text-[#E8C995] text-xs uppercase tracking-[0.2em]">Explore shelf →</span>
+                </a>
+
+                <a href="/categories/Biography" class="group border border-[#B08D57]/35 bg-[#E8DDC8]/60 p-8 hover:bg-[#294536] transition duration-500">
+                    <span class="font-display text-3xl text-[#B08D57] group-hover:text-[#E8C995]">VI.</span>
+                    <h3 class="font-display text-3xl text-[#3A2922] group-hover:text-[#F3EBDD] mt-4 mb-3">Lives & Legacies</h3>
+                    <p class="text-sm leading-7 text-[#3A2922]/70 group-hover:text-[#F3EBDD]/75">Real journeys, extraordinary people and stories worth remembering.</p>
+                    <span class="inline-block mt-6 text-[#6B2737] group-hover:text-[#E8C995] text-xs uppercase tracking-[0.2em]">Explore shelf →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="px-6 pb-24">
+        <div class="relative max-w-6xl mx-auto overflow-hidden bg-[#E8DDC8] border border-[#B08D57]/40 px-6 py-16 md:py-20 text-center">
+            <div class="absolute top-0 left-0 w-24 h-24 border-t border-l border-[#B08D57]/60"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 border-b border-r border-[#B08D57]/60"></div>
+
+            <p class="text-[#96584E] uppercase tracking-[0.3em] text-xs mb-5">Your next chapter awaits</p>
+
+            <h2 class="font-display text-5xl md:text-6xl text-[#3A2922]">Shall we find your next story?</h2>
+
+            <p class="max-w-xl mx-auto text-[#3A2922]/65 leading-7 mt-6 mb-9">
+                Take a little stroll through our collection. Your next favourite book might be closer than you think.
+            </p>
+
+            <a href="/books" class="inline-block bg-[#6B2737] text-[#F3EBDD] px-8 py-4 text-xs uppercase tracking-[0.2em] hover:bg-[#294536] transition duration-300">
+                Explore the Collection
+            </a>
+        </div>
+    </section>
+
+    <%- include('includes/footer.ejs') %>
+</body>
+</html>

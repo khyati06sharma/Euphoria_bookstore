@@ -1,0 +1,23 @@
+
+<nav class="bg-[#3A2922] text-[#F3EBDD] px-6 py-5 shadow-lg border-b border-[#B08D57]/40">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
+        <a href="/" class="text-3xl font-serif tracking-wide text-[#F3EBDD] hover:text-[#B08D57] transition duration-300">
+            Euphoria
+        </a>
+
+        <div class="flex flex-wrap justify-center items-center gap-1 md:gap-2 text-sm">
+            <a href="/" class="px-4 py-2 text-[#F3EBDD] hover:text-[#B08D57] transition duration-300">Home</a>
+            <a href="/about" class="px-4 py-2 text-[#F3EBDD] hover:text-[#B08D57] transition duration-300">About</a>
+            <a href="/books" class="px-4 py-2 text-[#F3EBDD] hover:text-[#B08D57] transition duration-300">Books</a>
+            <a href="/categories" class="px-4 py-2 text-[#F3EBDD] hover:text-[#B08D57] transition duration-300">Categories</a>
+            <a href="/contact" class="px-4 py-2 text-[#F3EBDD] hover:text-[#B08D57] transition duration-300">Contact</a>
+            <a href="/cart" class="text-sm text-[#F1EACC] hover:text-[#C9A66B] transition duration-300">Cart (<%= cartCount || 0 %>)</a>
+
+            <% if (isAdmin) { %>
+                <a href="/books" class="px-4 py-2 text-[#B08D57] hover:text-[#F3EBDD] transition duration-300">Admin Panel</a>
+            <% } else { %>
+                <a href="/admin/login" class="px-4 py-2 border border-[#B08D57]/50 text-[#F1EACC] hover:bg-[#6B2737] hover:border-[#6B2737] transition duration-300">Admin</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
