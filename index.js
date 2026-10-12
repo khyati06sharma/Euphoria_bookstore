@@ -1,10 +1,10 @@
 require('dotenv').config();
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "admin123";
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
@@ -21,13 +21,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+
 const transport = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "sona20sha@gmail.com",
-        pass: "spasqqjymckigcuo"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
+
 
 async function main() {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -56,11 +58,13 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use(session({
-    secret: "bookstoresecret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
+
 
 app.use((req, res, next) => {
     res.locals.isAdmin = req.session.isAdmin || false;
@@ -203,7 +207,7 @@ app.post("/contact", (req, res) => {
     const message = req.body.message;
 
     transport.sendMail({
-        to: "shakhyati2206@gmail.com",
+        to: process.env.CONTACT_TO,
         replyTo: email,
         subject: "New message from Euphoria Book Store",
         text: `
